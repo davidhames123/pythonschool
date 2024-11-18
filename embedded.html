@@ -1,0 +1,24 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/skulpt/1.0.0/skulpt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/skulpt/1.0.0/skulpt-stdlib.js"></script>
+
+<h2>Try Python!</h2>
+<textarea id="pythonCode" rows="6" cols="50">
+print("Hello, Python!")
+</textarea>
+<br>
+<button onclick="runPython()">Run Code</button>
+<div id="output"></div>
+
+<script>
+    function runPython() {
+        const code = document.getElementById("pythonCode").value;
+        const output = document.getElementById("output");
+        output.innerHTML = "";
+
+        Sk.importMainWithBody("<stdin>", false, code, (mod) => {
+            output.innerHTML = mod;
+        }, (err) => {
+            output.innerHTML = err.toString();
+        });
+    }
+</script>
